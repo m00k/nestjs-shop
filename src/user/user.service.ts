@@ -22,15 +22,7 @@ export class UserService {
 
   update(user: User): void {
     const idx = this.users.findIndex(_ => _.id === user.id);
-    if (idx === -1) throw new Error(`No user with id ${user.id}`);
+    if (idx === -1) throw new RangeError(`No user with id ${user.id}`);
     this.users = [...this.users.slice(0, idx), user, ...this.users.slice(idx)];
   }
 }
-
-// user = {fn:'John', ln:'Doe', dob: new Date('January 11, 1990')};
-// fetch( 'http://localhost:3000/users/', { body: JSON.stringify(user), method: 'POST', headers: {
-//  'content-type': 'application/json'
-// }, }).then(_ => console.log(_))
-// fetch( 'http://localhost:3000/users/', { body: JSON.stringify({...user, id: 1, fn: 'Jane'}), method: 'PUT', headers: {
-//       'content-type': 'application/json'
-//     }, }).then(_ => console.log(_))
